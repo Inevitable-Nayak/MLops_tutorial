@@ -6,3 +6,7 @@ MLops.egg-info/dependency_links.txt
 MLops.egg-info/requires.txt
 MLops.egg-info/top_level.txt
 mlops/__init__.py
+mlops/exception/__init__.py
+mlops/exception/exception.py
+mlops/logging/__init__.py
+mlops/logging/logger.py
