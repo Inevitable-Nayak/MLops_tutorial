@@ -2,4 +2,5 @@ pandas
 numpy
 matplotlib
 certifi
+scikit-learn
 -e .
