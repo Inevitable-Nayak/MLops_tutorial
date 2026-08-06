@@ -23,5 +23,16 @@ class dataingestionconfig:
         self.train_test_split_ratio:float=tp.data_ingestion_train_test_split_ratio
         self.databse_name:str=tp.data_ingestion_database_name
 
+class datavalidationconfig:
+    def __init__(self,train_pipe:trainingpipelineconfig):
+        self.datavalidationdir:str=os.path.join(trainingpipelineconfig.artifact_dir,tp.data_validation_dirname)
+        self.valid_data_dir:str=os.path.join(self.datavalidationdir,tp.data_validation_valid_dir)
+        self.invalid_data_dir:str=os.path.join(self.datavalidationdir,tp.data_validation_invalid_data)
+        self.valid_train_path:str=os.path.join(self.datavalidationdir,tp.train_file_name)
+        self.valid_test_path:str=os.path.join(self.datavalidationdir,tp.test_file_name)
+        self.invalid_train_path:str=os.path.join(self.datavalidationdir,tp.train_file_name)
+        self.invalid_test_path:str=os.path.join(self.datavalidationdir,tp.test_file_name)
+        self.drift_report_file_path:str=os.path.join(self.datavalidationdir,tp.data_validation_drift_report_dir,tp.data_validation_drfit_report_filename)
+
 
     

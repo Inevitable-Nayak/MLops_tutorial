@@ -3,6 +3,7 @@ import sys
 from datetime import datetime
 import pandas as pd
 import numpy as np
+
 target_column="Result"
 pipeline_name="mlops"   
 artifacts_dir="artifacts"
@@ -15,3 +16,9 @@ data_ingested_dir_name="data_ingestion"
 data_ingestion_feature_store_dir="feature_store"
 data_ingestion_ingested_dir="ingested"
 data_ingestion_train_test_split_ratio=0.2
+data_validation_dirname:str="datavaalidation"
+data_validation_valid_dir:str="validdata"
+data_validation_invalid_data:str="invaliddata"
+data_validation_drift_report_dir:str="drift_repport"
+data_validation_drfit_report_filename:str="report.yaml"
+schema_file_path="schema.yaml"

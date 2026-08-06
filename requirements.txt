@@ -3,4 +3,5 @@ numpy
 matplotlib
 certifi
 scikit-learn
+pyaml
 -e .
