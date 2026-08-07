@@ -9,4 +9,8 @@ class datavalidationartifact:
     valid_test_path:str
     invalid_train_path:str
     drift_report_path:str
+class datatransformationartifact:
+    transformed_object_file_path:str
+    transformed_train_file_path:str
+    transformed_test_file_path:str    
     

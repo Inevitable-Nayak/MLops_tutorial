@@ -22,3 +22,13 @@ data_validation_invalid_data:str="invaliddata"
 data_validation_drift_report_dir:str="drift_repport"
 data_validation_drfit_report_filename:str="report.yaml"
 schema_file_path="schema.yaml"
+PREPROCESSING_OBJECT_FILE_NAME = "preprocessing.pkl"
+data_transformation_dir_name:str="data_transformation"
+data_transformation_transformed_data_dir:str="transformed"
+data_transformation_transformed_object_dir:str="transsformed_obj"
+data_transformation_imputer_params:dict={
+    "missing_values":np.nan,
+    "n_neighbours":3,
+    "weights":"uniform",
+}
+

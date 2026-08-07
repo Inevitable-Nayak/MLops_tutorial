@@ -1,6 +1,6 @@
 from datetime import datetime
 import os,sys
-from mlops.constants import training_pipeline_constants as tp
+from mlops.constants import training_pipeline as tp
 print(tp.target_column)
 
 print(tp.data_ingestion_collection_name)
@@ -34,5 +34,12 @@ class datavalidationconfig:
         self.invalid_test_path:str=os.path.join(self.datavalidationdir,tp.test_file_name)
         self.drift_report_file_path:str=os.path.join(self.datavalidationdir,tp.data_validation_drift_report_dir,tp.data_validation_drfit_report_filename)
 
+class datatrasformationconfig:
+    def __init__(self,train_pipe:trainingpipelineconfig):
+        self.datatransformationdir:str=os.path.join(trainingpipelineconfig.artifact_dir,tp.data_transformation_dir_name)
+        self.datatransformationtrainfilepath:str=os.path.join(self.datatransformationdir,tp.data_transformation_transformed_data_dir,tp.train_file_name.replace("csv","npy"))
+        self.datatrainsformationtestfilepath:str=os.path.join(self.datatransformationdir,tp.data_transformation_transformed_data_dir,tp.test_file_name.replace("csv","npy"))
+        self.datatrainformationobjectfilepath:str=os.path.join(self.datatransformationdir,tp.data_transformation_transformed_object_dir,tp.PREPROCESSING_OBJECT_FILE_NAME)
+         
 
     
