@@ -10,6 +10,8 @@ artifacts_dir="artifacts"
 file_name="phisingData.csv"
 train_file_name="train.csv"
 test_file_name="test.csv"
+saved_model_dir=os.path.join("saved_models")
+model_file_name="model.pkl"
 data_ingestion_collection_name="ML_OPS"
 data_ingestion_database_name="Amrutansu_NAyak"
 data_ingested_dir_name="data_ingestion"
@@ -31,4 +33,11 @@ data_transformation_imputer_params:dict={
     "n_neighbours":3,
     "weights":"uniform",
 }
+data_transformation_train_file_path:str="train.npy"
+data_transformation_test_file_path:str="test.npy"
+model_trainer_dir_name:str="model_trainer"
+model_trainer_trained_model_dir:str="trained_model"
+model_trainer_trained_model_name:str="model.pkl"
+model_trainer_expected_score:float=0.6
+model_trainer_threshold:float=0.05
 

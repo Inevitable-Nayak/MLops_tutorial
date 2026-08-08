@@ -25,7 +25,7 @@ class dataingestionconfig:
 
 class datavalidationconfig:
     def __init__(self,train_pipe:trainingpipelineconfig):
-        self.datavalidationdir:str=os.path.join(trainingpipelineconfig.artifact_dir,tp.data_validation_dirname)
+        self.datavalidationdir:str=os.path.join(train_pipe.artifact_dir,tp.data_validation_dirname)
         self.valid_data_dir:str=os.path.join(self.datavalidationdir,tp.data_validation_valid_dir)
         self.invalid_data_dir:str=os.path.join(self.datavalidationdir,tp.data_validation_invalid_data)
         self.valid_train_path:str=os.path.join(self.datavalidationdir,tp.train_file_name)
@@ -36,10 +36,15 @@ class datavalidationconfig:
 
 class datatrasformationconfig:
     def __init__(self,train_pipe:trainingpipelineconfig):
-        self.datatransformationdir:str=os.path.join(trainingpipelineconfig.artifact_dir,tp.data_transformation_dir_name)
+        self.datatransformationdir:str=os.path.join(train_pipe.artifact_dir,tp.data_transformation_dir_name)
         self.datatransformationtrainfilepath:str=os.path.join(self.datatransformationdir,tp.data_transformation_transformed_data_dir,tp.train_file_name.replace("csv","npy"))
         self.datatrainsformationtestfilepath:str=os.path.join(self.datatransformationdir,tp.data_transformation_transformed_data_dir,tp.test_file_name.replace("csv","npy"))
         self.datatrainformationobjectfilepath:str=os.path.join(self.datatransformationdir,tp.data_transformation_transformed_object_dir,tp.PREPROCESSING_OBJECT_FILE_NAME)
-         
+class modeltrainerconfig:
+    def __init__(self,train_piping:trainingpipelineconfig):
+        self.modeltrainerdirname:str=os.path.join(train_piping.artifact_dir,tp.model_trainer_dir_name)
+        self.trainedmodelfilepath:str=os.path.join(self.modeltrainerdirname,tp.model_trainer_trained_model_dir,tp.model_trainer_trained_model_name)
+        self.expectedaccuracy:float=tp.model_trainer_expected_score
+        self.threshold:float=tp.model_trainer_threshold        
 
     
