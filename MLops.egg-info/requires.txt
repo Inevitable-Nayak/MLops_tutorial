@@ -4,3 +4,4 @@ matplotlib
 certifi
 scikit-learn
 pyaml
+mlflow
