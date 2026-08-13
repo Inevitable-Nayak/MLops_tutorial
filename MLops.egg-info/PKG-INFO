@@ -10,6 +10,8 @@ Requires-Dist: certifi
 Requires-Dist: scikit-learn
 Requires-Dist: pyaml
 Requires-Dist: mlflow
+Requires-Dist: fastapi
+Requires-Dist: dagshub
 Dynamic: author
 Dynamic: author-email
 Dynamic: requires-dist
