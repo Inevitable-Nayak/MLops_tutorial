@@ -10,6 +10,8 @@ import pymongo
 from mlops.logging.logger import logging
 from mlops.exception.exception import customexception
 from mlops.pipeline.training_pipeline import trainingpipeline
+from mlops.utils.main_utils.utils import load_object
+from mlops.utils.ml_utils.model.estimator import networkmodel
 import pandas as pd
 import numpy as np
 from fastapi import FastAPI
@@ -24,6 +26,8 @@ from fastapi.responses import Response
 from starlette.responses import RedirectResponse
 from mlops.constants.training_pipeline import data_ingestion_database_name
 from mlops.constants.training_pipeline import data_ingestion_collection_name
+from fastapi.templating import Jinja2Templates
+templates=Jinja2Templates(directory="./templates")
 client=pymongo.MongoClient(mongo_db_url,tlsCAFile=ca)
 database=client[data_ingestion_database_name]
 collection=client[data_ingestion_collection_name]
@@ -38,5 +42,21 @@ async def train_route():
         return Response("training is succesfull")
     except Exception as e:
         raise customexception(e,sys)
+@app.post("/predict")
+async def predict(request:Request,file:UploadFile=File(...)):
+    try:
+        df=pd.read_csv(file.file)
+        preprocessor=load_object("final_model/preprocessor.pkl")
+        final_model=load_object("final_model/model.pkl")
+        network_model= networkmodel(preprocessor=preprocessor,model=final_model)
+        y_pred=network_model.predict(df)
+        df['predicted_coloumn']=y_pred
+        df.to_csv('predicted_output/output.csv')
+        table_html=df.to_html(classes='table table-striped')
+        return templates.TemplateResponse("table.html",{"request":Request,"table":table_html})
+    except Exception as e:
+        raise customexception(e,sys)
+    
+
 
 
