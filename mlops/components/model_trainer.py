@@ -92,18 +92,42 @@ class modeltrainer:
         
         
        
-    def initiate_model_trainer(self)->modeltrainerartifact:
+    def initiate_model_trainer(self):
+
         try:
-            train_file_path=self.data_transformation_artifact.transformed_train_file_path
-            test_file_path=self.data_transformation_artifact.transformed_test_file_path
-            train_arr=load_numpy_array(train_file_path)
-            test_arr=load_numpy_array(test_file_path)
-            x_train,y_train,x_test,y_test=(
-                train_arr[:,:-1],
-                train_arr[:,-1],
-                test_arr[:,:-1],
-                test_arr[:,-1],
+
+            train_file_path = (
+                self.data_transformation_artifact
+                .transformed_train_file_path
             )
-            model=self.train_model
+
+            test_file_path = (
+                self.data_transformation_artifact
+                .transformed_test_file_path
+            )
+
+            train_arr = load_numpy_array(
+                train_file_path
+            )
+
+            test_arr = load_numpy_array(
+                test_file_path
+            )
+
+            x_train = train_arr[:, :-1]
+            y_train = train_arr[:, -1]
+
+            x_test = test_arr[:, :-1]
+            y_test = test_arr[:, -1]
+
+            model_trainer_artifact = self.train_model(
+                x_train=x_train,
+                y_train=y_train,
+                x_test=x_test,
+                y_test=y_test
+            )
+
+            return model_trainer_artifact
+
         except Exception as e:
-            raise customexception(e,sys)
+            raise customexception(e, sys)

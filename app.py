@@ -36,12 +36,25 @@ async def index():
     return RedirectResponse(url="/docs")
 @app.get("/train")
 async def train_route():
+
     try:
-        train_pipeline=trainingpipeline()
-        train_pipeline.run_pipeline()
-        return Response("training is succesfull")
+
+        train_pipeline = trainingpipeline()
+
+        model_trainer_artifact = (
+            train_pipeline.run_pipeline()
+        )
+
+        return {
+            "message": "Training successful",
+            "model": str(
+                model_trainer_artifact.trained_model_file_path
+            )
+        }
+
     except Exception as e:
-        raise customexception(e,sys)
+
+        raise customexception(e, sys)
 @app.post("/predict")
 async def predict(request:Request,file:UploadFile=File(...)):
     try:
